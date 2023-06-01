@@ -1,4 +1,4 @@
-function Blogs() {
+function LearnToBuild() {
   return (
     <div className="App">
       <div>
@@ -8,4 +8,4 @@ function Blogs() {
   );
 }
 
-export default Blogs;
+export default LearnToBuild;

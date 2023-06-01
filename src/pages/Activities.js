@@ -1,11 +1,11 @@
-function Contact() {
+function Activities() {
   return (
     <div className="App">
       <div>
-        <p>Contact</p>
+        <p>Activities</p>
       </div>
     </div>
   );
 }
 
-export default Contact;
+export default Activities;
