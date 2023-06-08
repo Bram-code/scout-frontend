@@ -2,6 +2,7 @@ import ProgramParamaters from "./ProgramParamaters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useState } from "react";
+import ProgramActivities from "./ProgramActivities";
 
 function BuilderMain() {
   const [page, setPage] = useState(0);
@@ -41,11 +42,25 @@ function BuilderMain() {
           />
         </div>
         <div className={"flex justify-center"}>
-          <ProgramParamaters />
+          {page === 0 && <ProgramParamaters />}
+          {page === 1 && <ProgramActivities />}
         </div>
 
         <div>
-          <button>Next</button>
+          <button
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            Previous
+          </button>
+          <button
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

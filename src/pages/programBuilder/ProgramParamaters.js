@@ -2,20 +2,12 @@ import { useEffect, useState } from "react";
 
 function ProgramParamaters() {
   const [name, setName] = useState("");
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(4);
   const [opening, setOpening] = useState(true);
   const [closing, setClosing] = useState(true);
   const [selectValue, setSelectValue] = useState("Opening and closing");
   const [breakIs, setBreakIs] = useState(true);
   const [corvee, setCorvee] = useState(true);
-  const [programParameters, setProgramParameters] = useState({
-    name: "",
-    time: 0,
-    opening: true,
-    closing: true,
-    break: true,
-    corvee: true,
-  });
 
   useEffect(() => {
     let parameters = localStorage.getItem("programParameters");
