@@ -7,6 +7,7 @@ import LearnToBuild from "./pages/LearnToBuild";
 import Activities from "./pages/Activities";
 import Programs from "./pages/Programs";
 import Choose from "./pages/Choose";
+import BuilderMain from "./pages/programBuilder/BuilderMain";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="programs" element={<Programs />} />
           <Route path="activities" element={<Activities />} />
           <Route path="choose" element={<Choose />} />
+          <Route path="programBuilder" element={<BuilderMain />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
