@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useState } from "react";
 import ProgramActivities from "./ProgramActivities";
+import ProgramTimescheme from "./ProgramTimescheme";
 
 function BuilderMain() {
   const [page, setPage] = useState(0);
@@ -44,23 +45,34 @@ function BuilderMain() {
         <div className={"flex justify-center"}>
           {page === 0 && <ProgramParamaters />}
           {page === 1 && <ProgramActivities />}
+          {page === 2 && <ProgramTimescheme />}
         </div>
 
-        <div>
-          <button
-            onClick={() => {
-              setPage(page - 1);
-            }}
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => {
-              setPage(page + 1);
-            }}
-          >
-            Next
-          </button>
+        <div className={"flex justify-center m-5"}>
+          <div className={"w-basic flex justify-between"}>
+            <button
+              className={
+                "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              }
+              onClick={() => {
+                setPage(page - 1);
+              }}
+              disabled={page === 0}
+            >
+              Previous
+            </button>
+            <button
+              className={
+                "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              }
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === 3}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

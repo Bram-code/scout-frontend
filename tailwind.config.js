@@ -10,6 +10,7 @@ module.exports = {
         theme: "#37B42F",
       },
       width: { basic: "50rem" },
+
       fontFamily: { sans: ["Proxima Nova", ...defaultTheme.fontFamily.sans] },
     },
   },
