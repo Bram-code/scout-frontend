@@ -6,13 +6,20 @@ function ProgramActivities() {
   let activities = [
     {
       name: "Hunter Ball",
-      time: "15 min",
+      time: "45 min",
       tags: ["water"],
     },
-    { name: "Hunter Ball 2", time: "15 min", tags: ["water"] },
-    { name: "Hunter Ball 3", time: "15 min", tags: ["water"] },
-    { name: "Hunter Ball 3", time: "15 min", tags: ["water"] },
-    { name: "Hunter Ball 3", time: "15 min", tags: ["water"] },
+    { name: "Chair dance", time: "15 min", tags: ["water"] },
+    { name: "Living Stratego", time: "60 min", tags: ["water"] },
+    { name: "Capture the Flag", time: "15 min", tags: ["water"] },
+    { name: "Knot Tying Relay", time: "15 min", tags: ["water"] },
+    { name: "Scavenger Hunt", time: "15 min", tags: ["water"] },
+    { name: "Nature Bingo", time: "15 min", tags: ["water"] },
+    { name: "Team Building Challenge", time: "15 min", tags: ["water"] },
+    { name: "Blindfolded Obstacle Course", time: "15 min", tags: ["water"] },
+    { name: "Knot Tying Relay", time: "15 min", tags: ["water"] },
+    { name: "Survival Challenge", time: "15 min", tags: ["water"] },
+    { name: "Tug of War", time: "15 min", tags: ["water"] },
   ];
 
   const [setActivities, setSetActivities] = useState([]);
@@ -48,6 +55,14 @@ function ProgramActivities() {
 
   return (
     <div className="App">
+      <div className={"w-basic mb-2 flex justify-between"}>
+        <input
+          className={"w-4/6 border-black border-2 p-1 rounded-xl"}
+          type={"text"}
+          placeholder={"Search"}
+        />
+        <h1 className={"text-3xl text-theme"}>Select Activities</h1>
+      </div>
       <div className={"w-basic flex justify-between"}>
         <div className={"w-4/6 max-h-[30rem] overflow-y-auto"}>
           <table

@@ -1,6 +1,8 @@
 import { Outlet, Link } from "react-router-dom";
 import * as React from "react";
 import img from "./images/img.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const Layout = () => {
   const [open, setOpen] = React.useState(false);
@@ -31,7 +33,10 @@ const Layout = () => {
 
         <nav className={"right-0 top-0 absolute text-white"}>
           <div className={"p-7"}>
-            <button onClick={handleOpen}>Dropdown</button>
+            <button onClick={handleOpen}>
+              <i>Bram Ekelschot </i>
+              <FontAwesomeIcon icon={solid("chevron-up")} />
+            </button>
             {open ? (
               <ul className="w-max bg-white text-black divide-y divide-black border-black border-2 z-50 absolute right-0">
                 <li>
