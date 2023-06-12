@@ -4,11 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ProgramTimescheme() {
   const [firstHalfActivities, setFirstHalfActivities] = useState([]);
+  const [openingTime, setOpeningTime] = useState("13:00");
+
   const addActivityFirstHalf = () => {
     setFirstHalfActivities((firstHalfActivities) => [
       ...firstHalfActivities,
       getSetActivities()[0],
     ]);
+  };
+
+  const updateActivityNameFirstHalf = (index, e) => {
+    let newArr = [...firstHalfActivities];
+    newArr[index].name = e.target.value;
+    setFirstHalfActivities(newArr);
   };
 
   const deleteActivityFirstHalf = (index) => {
@@ -18,15 +26,33 @@ function ProgramTimescheme() {
     ]);
   };
 
-  const updateActivityFirstHalf = () => {};
+  const getOptionsFirstHalf = (activities, activity) => {
+    if (activities.name === activity.name) {
+      return <option selected>{activities.name}</option>;
+    }
+    return <option>{activities.name}</option>;
+  };
 
   const getSetActivities = () => {
     return JSON.parse(localStorage.getItem("activities"));
   };
 
   useEffect(() => {
-    localStorage.setItem("program", JSON.stringify(firstHalfActivities));
-  }, [firstHalfActivities]);
+    let program = JSON.parse(localStorage.getItem("program"));
+    if (program.firstHalf.length !== 0) {
+      setFirstHalfActivities(program.firstHalf);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "program",
+      JSON.stringify({
+        openingTime: openingTime,
+        firstHalf: firstHalfActivities,
+      })
+    );
+  }, [firstHalfActivities, openingTime]);
 
   return (
     <div>
@@ -55,8 +81,14 @@ function ProgramTimescheme() {
               }
             >
               <input
-                className={"h-full w-14 rounded-2xl p-1"}
-                type={"number"}
+                className={"h-full w-12 text-center rounded-2xl p-1"}
+                min={"13:00"}
+                max={"17:00"}
+                type={"time"}
+                onChange={(e) => {
+                  setOpeningTime(e.target.value);
+                }}
+                value={openingTime}
               />
               <FontAwesomeIcon
                 className={"h-7 m-2"}
@@ -71,12 +103,14 @@ function ProgramTimescheme() {
           <div className={"w-basic border-black border-x-2 border-b-2"}>
             <div className={"w-full bg-white flex justify-between"}>
               <select
-                onChange={(e) => {}}
+                onChange={(e) => {
+                  updateActivityNameFirstHalf(index, e);
+                }}
                 className={"border-black rounded-2xl border-2 p-1"}
               >
-                {getSetActivities().map((activity) => (
-                  <option>{activity.name}</option>
-                ))}
+                {getSetActivities().map((activities) =>
+                  getOptionsFirstHalf(activities, activity)
+                )}
               </select>
               <div className={"rounded-2xl  flex border-black border-2"}>
                 <input
