@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         background: "#D1D1D1",
         theme: "#37B42F",
+        purpleTheme: "#744CAF",
       },
       width: { basic: "50rem" },
 

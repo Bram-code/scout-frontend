@@ -77,7 +77,9 @@ function BuilderMain() {
           <div className={"w-basic flex justify-between"}>
             <button
               className={
-                "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                page === 0
+                  ? "invisible"
+                  : "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               }
               onClick={() => {
                 setPage(page - 1);
@@ -88,7 +90,9 @@ function BuilderMain() {
             </button>
             <button
               className={
-                "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                page === 3
+                  ? "invisible"
+                  : "bg-theme hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               }
               onClick={() => {
                 setPage(page + 1);

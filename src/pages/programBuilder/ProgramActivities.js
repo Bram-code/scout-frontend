@@ -1,12 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useEffect, useState } from "react";
+import { PDFViewer } from "@react-pdf/renderer";
+import ProgramPDF from "./ProgramPDF";
 
 function ProgramActivities() {
-  let activities = [
+  const activities = [
     {
       name: "Hunter Ball",
-      time: "45 min",
+      time: "00:45",
       tags: ["water"],
     },
     { name: "Chair dance", time: "00:15", tags: ["water"] },
@@ -23,6 +25,8 @@ function ProgramActivities() {
   ];
 
   const [setActivities, setSetActivities] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchActivities, setSearchActivities] = useState([]);
 
   const addToProgram = (activity) => {
     let activities = getSetActivities();
@@ -36,18 +40,27 @@ function ProgramActivities() {
   };
 
   const removeFromProgram = (index) => {
-    console.log(index);
     let activities = getSetActivities();
-
     activities.splice(index, 1);
-
     localStorage.setItem("activities", JSON.stringify(activities));
     setSetActivities(activities);
   };
 
   const getSetActivities = () => {
-    return (activities = JSON.parse(localStorage.getItem("activities")));
+    return JSON.parse(localStorage.getItem("activities"));
   };
+
+  useEffect(() => {
+    setSearchActivities(activities);
+    let value = search.trim().toLowerCase();
+    if (value.length !== 0) {
+      setSearchActivities(
+        activities.filter((activity) => {
+          return activity.name.trim().toLowerCase().includes(value);
+        })
+      );
+    }
+  }, [search]);
 
   useEffect(() => {
     setSetActivities(getSetActivities());
@@ -60,6 +73,10 @@ function ProgramActivities() {
           className={"w-4/6 border-black border-2 p-1 rounded-xl"}
           type={"text"}
           placeholder={"Search"}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
         />
         <h1 className={"text-3xl text-theme"}>Select Activities</h1>
       </div>
@@ -82,7 +99,7 @@ function ProgramActivities() {
               </tr>
             </thead>
             <tbody className={"bg-theme"}>
-              {activities.map((activity) => (
+              {searchActivities.map((activity) => (
                 <>
                   <tr className={"bg-white border-2 border-black space-y-5"}>
                     <td className={"ml-10"}>{activity.name}</td>

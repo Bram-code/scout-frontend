@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import * as React from "react";
-import img from "./images/img.png";
+import logo from "./images/logo2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
@@ -17,17 +17,32 @@ const Layout = () => {
         <nav className={"flex space-x-10 text-white "}>
           <div>
             <Link to="/">
-              <img src={img} alt={"Home"} className={"rounded-full h-20 "} />
+              <img
+                src={logo}
+                alt={"Home"}
+                className={"border-purpleTheme border-2 rounded-full h-20 "}
+              />
             </Link>
           </div>
-          <div className={"pt-7"}>
-            <Link to="/learnToBuild">Learn to build</Link>
+          {/*<div className={" pt-7"}>*/}
+          {/*  <Link to="/learnToBuild">*/}
+          {/*    Learn to build*/}
+          {/*  </Link>*/}
+          {/*</div>*/}
+          <div className={" pt-7"}>
+            <div className={"cursor-not-allowed"}>Learn to build</div>
           </div>
-          <div className={"pt-7"}>
-            <Link to="/programs">Programs</Link>
+          {/*<div className={"pt-7"}>*/}
+          {/*  <Link to="/programs">Programs</Link>*/}
+          {/*</div>*/}
+          <div className={" pt-7"}>
+            <div className={"cursor-not-allowed"}>Programs</div>
           </div>
-          <div className={"pt-7"}>
-            <Link to="/activities">Activities</Link>
+          {/*<div className={"pt-7"}>*/}
+          {/*  <Link to="/activities">Activities</Link>*/}
+          {/*</div>*/}
+          <div className={" pt-7"}>
+            <div className={"cursor-not-allowed"}>Activities</div>
           </div>
         </nav>
 
@@ -35,15 +50,12 @@ const Layout = () => {
           <div className={"p-7"}>
             <button onClick={handleOpen}>
               <i>Bram Ekelschot </i>
-              <FontAwesomeIcon icon={solid("chevron-up")} />
+              <FontAwesomeIcon icon={solid("chevron-down")} />
             </button>
             {open ? (
               <ul className="w-max bg-white text-black divide-y divide-black border-black border-2 z-50 absolute right-0">
                 <li>
                   <Link to="/choose">Add a program or activity</Link>
-                </li>
-                <li>
-                  <button>Menu 2</button>
                 </li>
               </ul>
             ) : null}

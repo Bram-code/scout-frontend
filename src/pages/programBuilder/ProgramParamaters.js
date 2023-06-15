@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { PDFViewer } from "@react-pdf/renderer";
+import ProgramPDF from "./ProgramPDF";
 
 function ProgramParamaters() {
   const [name, setName] = useState("");
-  const [time, setTime] = useState(4);
+  const [theme, setTheme] = useState("");
   const [opening, setOpening] = useState(true);
   const [closing, setClosing] = useState(true);
   const [selectValue, setSelectValue] = useState("Opening and closing");
@@ -15,7 +17,7 @@ function ProgramParamaters() {
     if (parameters) {
       parameters = JSON.parse(parameters);
       setName(parameters.name);
-      setTime(parameters.time);
+      setTheme(parameters.theme);
       if (parameters.opening && parameters.closing) {
         setSelectValue("Opening and closing");
       } else if (parameters.opening && !parameters.closing) {
@@ -27,14 +29,10 @@ function ProgramParamaters() {
       }
       setBreakIs(parameters.break);
       setCorvee(parameters.corvee);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (name) {
+    } else {
       let program = {
         name: name,
-        time: time,
+        theme: theme,
         opening: opening,
         closing: closing,
         break: breakIs,
@@ -42,7 +40,21 @@ function ProgramParamaters() {
       };
       localStorage.setItem("programParameters", JSON.stringify(program));
     }
-  }, [name, time, opening, closing, breakIs, corvee]);
+  }, []);
+
+  useEffect(() => {
+    if (name) {
+      let program = {
+        name: name,
+        theme: theme,
+        opening: opening,
+        closing: closing,
+        break: breakIs,
+        corvee: corvee,
+      };
+      localStorage.setItem("programParameters", JSON.stringify(program));
+    }
+  }, [name, theme, opening, closing, breakIs, corvee]);
 
   useEffect(() => {
     if (selectValue === "Opening and closing") {
@@ -63,12 +75,14 @@ function ProgramParamaters() {
   return (
     <div className="App">
       <div className={"space-y-2 mt-10"}>
+        <div className={"text-3xl text-theme m-3"}>Select your parameters</div>
+
         <div
           className={
             "bg-white w-basic p-2 flex justify-between border-2 border-black rounded"
           }
         >
-          <span className={"w-full p-1"}>Name of your program</span>
+          <span className={"w-full p-1"}>Name of your program: </span>
           <input
             value={name}
             onChange={(e) => {
@@ -84,14 +98,14 @@ function ProgramParamaters() {
             "bg-white w-basic p-2 flex justify-between border-2 border-black rounded"
           }
         >
-          <span className={"w-full p-1"}>Amount of time in hours: </span>
+          <span className={"w-full p-1"}>Theme of your program: </span>
           <input
-            value={time}
+            value={theme}
             onChange={(e) => {
-              setTime(e.target.value);
+              setTheme(e.target.value);
             }}
             className={"w-full border-black border-2 p-1"}
-            type={"number"}
+            type={"text"}
           />
         </div>
 
